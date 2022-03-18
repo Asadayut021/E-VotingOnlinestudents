@@ -18,22 +18,29 @@
           <v-row class="font1">
             <v-col cols="12" sm="6">
               <v-text-field
-                v-model="first"
-                label="รหัสนักเรียนนักศึกษา"
+                v-model="user.first_name"
+                label="ชื่อ"
                 outlined
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                v-model="last"
-                label="ชื่อ - นามสกุล"
+                v-model="user.last_name"
+                label="นามสกุล"
                 outlined
               ></v-text-field>
             </v-col>
             <v-col cols="12" sm="6">
               <v-text-field
-                v-model="last"
-                label="ระดับชั้น"
+                v-model="user.phone"
+                label="เบอร์"
+                outlined
+              ></v-text-field>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-text-field
+                v-model="user.email"
+                label="อีเมล"
                 outlined
               ></v-text-field>
             </v-col>
@@ -67,7 +74,9 @@
               
             </div> -->
         <!-- <div v-else-if="EditCandidate.images_url == null"></div> -->
-        <v-btn class="bu" block> ยืนยันการแก้ไข </v-btn>
+        <v-btn class="bu" block @click="updateStudents(user.id)">
+          ยืนยันการแก้ไข
+        </v-btn>
       </v-form>
     </v-col>
   </v-row>
@@ -78,8 +87,9 @@
 }
 .bu {
   margin-top: 40px;
-  background: #2196f3;
+  background-color: #2196f3 !important;
   font-family: 'Kanit', sans-serif;
+  color: #ffff !important;
 }
 </style>
 <script>
@@ -100,12 +110,14 @@ export default {
       radios: null,
       imageUrl: '',
       imagesRaw: '',
-      form: { StudentID: '', first: '', last: '' },
+      user: [],
     }
   },
   mounted() {
     // this.getCandidate()
     // this.getYear()
+    this.user = $nuxt.$auth.user
+    console.log(this.user)
   },
   watch: {
     radios() {
@@ -113,12 +125,37 @@ export default {
     },
   },
   methods: {
-    async getCandidate() {
+    // async getCandidate() {
+    //   try {
+    //     const { data } = await this.$axios.get(`/api/v1/voting/setup`)
+    //     this.users = data.data
+    //   } catch (error) {}
+    // },
+    async updateStudents(id) {
+      if (this.imagesRaw) {
+        this.imageUrl = await this.onUpload(this.imagesRaw)
+      }
+      const updateStudents = {
+        id_std: this.user.id_std,
+        id_class: this.user.id_class,
+        prefix: this.user.prefix,
+        first_name: this.user.first_name,
+        last_name: this.user.last_name,
+        phone: this.user.phone,
+        email: this.user.email,
+        images_url: this.imageUrl,
+      }
       try {
-        const { data } = await this.$axios.get(`/api/v1/voting/setup`)
-        this.users = data.data
+        const { data } = await this.$axios.put(
+          `/api/v1/students/${id}`,
+          updateStudents
+        )
+        this.$router.push('/indexstd')
+        // this.getStudents()
+        // // console.log(this.updateCandidate)
       } catch (error) {}
     },
+
     ResizeImage(event) {
       var file = event.target.files[0]
       if (file.type.match(/image.*/)) {

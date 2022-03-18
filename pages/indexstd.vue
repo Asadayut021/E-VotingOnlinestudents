@@ -2,21 +2,9 @@
   <v-row>
     <v-col cols="12" sm="8" md="12">
       <v-col cols="12" sm="8" md="12">
-        <vs-select
-          v-model="value3"
-          placeholder="เปลี่ยนปีการศึกษา"
-          v-if="yEars.length > 0"
-          class="yE"
-        >
-          <vs-option
-            v-for="(item, index) in yEars"
-            :key="index"
-            :label="item.name"
-            :value="item.id"
-          >
-            {{ item.name }}
-          </vs-option>
-        </vs-select>
+        <v-btn depressed color="error" @click="logout">
+          ออกจากระบบ
+        </v-btn>
       </v-col>
       <v-stepper style="margin-top: 25px" v-model="e1">
         <v-stepper-header>
@@ -137,7 +125,7 @@
               <v-btn color="primary" @click="e1 = 3" v-if="radios">
                 เลือก
               </v-btn>
-              <v-btn text> Cancel </v-btn>
+              <v-btn text @click="e1 = 1"> Cancel </v-btn>
             </div>
           </v-stepper-content>
           <v-stepper-content step="3">
@@ -169,8 +157,10 @@
                 </div>
               </v-col>
             </v-row>
-            <v-btn color="primary" @click="e1 = 1"> ยืนยันการเลือก </v-btn>
-            <v-btn text> Cancel </v-btn>
+            <v-btn color="primary" @click="createVoting(form.id, radios.id)">
+              ยืนยันการเลือก
+            </v-btn>
+            <v-btn text @click="e1 = 2"> Cancel </v-btn>
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
@@ -300,6 +290,10 @@ export default {
     this.getCandidate(year)
   },
   methods: {
+    logout() {
+      $nuxt.$auth.logout()
+      this.$router.push('/loginstd')
+    },
     async getStudents() {
       try {
         const { data } = await this.$axios.get(`/api/v1/voting/setup`)
@@ -307,6 +301,20 @@ export default {
         this.form = data.data.student_info
         this.student_class = data.data.student_class
         // console.log(data.data.is_voting)
+      } catch (error) {}
+    },
+    async createVoting(id_std, id) {
+      // console.log(id_std, id)
+      const formVoting = {
+        id_std: id_std,
+        id_candidate: id,
+      }
+      try {
+        const { data } = await this.$axios.post('/api/v1/voting', formVoting)
+        this.$router.push('/indexstd')
+        this.getStudents()
+        this.e1 = 1
+        // this.active = false
       } catch (error) {}
     },
     async getCandidate(year) {

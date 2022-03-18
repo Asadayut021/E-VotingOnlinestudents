@@ -11,7 +11,7 @@
         "
         class="AdminLecturer"
       >
-        เข้าสู่ระบบผู้ดูแลระบบ
+      
       </p>
 
       <img class="img1" src="~/static/images/logoit.png" alt="" />
@@ -40,11 +40,7 @@
           </template>
         </vs-input>
         <div class="flex">
-          <vs-checkbox
-            style="font-family: 'Kanit', sans-serif; font-weight: bold"
-            v-model="remember"
-            >จดจำฉัน</vs-checkbox
-          >
+         
           <a style="margin-left: 46%" class="register" href="#">
             <a
               href="/registerstd"
@@ -145,6 +141,8 @@ export default {
   data() {
     return {
       loading: false,
+      uSername: '',
+      pAssword: '',
     }
   },
   methods: {

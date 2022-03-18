@@ -6,7 +6,7 @@
           ออกจากระบบ
         </v-btn>
       </v-col>
-      <v-stepper style="margin-top: 25px" v-model="e1">
+      <v-stepper style="margin-top: 25px" v-model="e1" v-if="!isStop && !status">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1">
             ข้อมูลนักเรียนนักศึกษา
@@ -164,6 +164,7 @@
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
+      <div v-else>หมดเวลาแล้ววววว</div>
       <!-- <v-card class="car" elevation="2">
         <v-row
           ><v-col cols="12" sm="8" md="3">
@@ -252,6 +253,7 @@ export default {
       form: [],
       status: null,
       student_class: [],
+      isStop: false,
       cAndidate: [],
       yEars: [
         //	พ.ศ.
@@ -297,6 +299,7 @@ export default {
     async getStudents() {
       try {
         const { data } = await this.$axios.get(`/api/v1/voting/setup`)
+        this.isStop = data.data.is_stop
         this.status = data.data.is_voting
         this.form = data.data.student_info
         this.student_class = data.data.student_class

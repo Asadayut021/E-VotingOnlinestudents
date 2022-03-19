@@ -23,18 +23,20 @@
                 placeholder="ระดับชั้น"
                 label="ระดับชั้น"
                 v-model="form.cLassapp"
+                v-if="cLassapp.length > 0"
               >
                 <vs-option
                   v-for="(item, index) in cLassapp"
                   :key="index"
-                  :label="item.classapps"
+                  :label="item.name"
                   :value="item.id"
                 >
-                  {{ item.classapps }}
+                  {{ item.name }}
                 </vs-option>
               </vs-select>
             </v-col>
-            <v-col cols="12" sm="8" md="12">
+
+            <v-col cols="12" sm="8" md="6">
               <vs-select
                 style="margin-top: 20px"
                 filter
@@ -47,6 +49,7 @@
                 <vs-option label="นาง" value="3"> นาง </vs-option>
               </vs-select></v-col
             >
+            <v-col cols="12" sm="8" md="6"></v-col>
             <v-col cols="12" sm="8" md="6">
               <vs-input
                 block
@@ -148,23 +151,8 @@ export default {
       max: 10,
       active: 0,
       selected: [],
-      yEars: [
-        //	พ.ศ.
-        {
-          id: '1',
-          year: '2565',
-        },
-      ],
-      cLassapp: [
-        {
-          id: '1',
-          classapps: 'ปวช.1',
-        },
-        {
-          id: '2',
-          classapps: 'ปวช.2',
-        },
-      ],
+      yEars: [],
+      cLassapp: [],
       form: {
         //////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
         aPplicantnumber: '', //รหัสนักเรียนนักศึกษา //เพิ่มผู้ามัคร
@@ -224,7 +212,27 @@ export default {
       ],
     }
   },
+  mounted() {
+    // this.getCandidate()
+    this.getYear()
+    this.getClass()
+  },
   methods: {
+    async getClass() {
+      try {
+        const { data } = await this.$axios.get(`/api/v1/class`)
+        this.cLassapp = data.data
+      } catch (error) {}
+    },
+    async getYear() {
+      try {
+        const { data } = await this.$axios.get('/api/v1/year')
+        this.yEars = data.data
+        // console.log( this.yEars)
+        this.value3 = this.yEars[0].id
+        this.form.selectyear = this.value3
+      } catch (error) {}
+    },
     async button() {
       const readdstudent = {
         id_std: this.form.aPplicantnumber,
@@ -242,11 +250,10 @@ export default {
           '/api/v1/auth_std/register_students',
           readdstudent
         )
-        console.log('gooo')        
+        console.log('gooo')
         this.$router.push('/loginstd')
       } catch (error) {
         console.log('end')
-        
       }
     },
   },

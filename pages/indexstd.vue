@@ -162,7 +162,7 @@
           </v-stepper-content>
         </v-stepper-items>
       </v-stepper>
-      <div v-else>หมดเวลาแล้ววววว</div>
+      <div class="ssss" v-else>สิ้นสุดการเลือกตั้ง</div>
       <!-- <v-card class="car" elevation="2">
         <v-row
           ><v-col cols="12" sm="8" md="3">
@@ -188,6 +188,11 @@
   >
 </template>
 <style>
+.ssss{
+  text-align: center;
+  margin-top: 17%;
+  font-size: 50px;
+}
 .yearstd {
   margin-left: -146px;
   font-family: 'Kanit', sans-serif;

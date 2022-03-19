@@ -22,7 +22,7 @@
           style="font-family: 'Kanit', sans-serif; font-weight: bold"
           class="username"
           v-model="uSername"
-          placeholder="ชื่อผู้ใช้งาน"
+          placeholder="ชื่อผู้ใช้งานรหัสนักเรียนนักศึกษา"
         >
           <template #icon>
             <i class="bx bx-user"></i>
@@ -33,7 +33,7 @@
           class="password"
           type="password"
           v-model="pAssword"
-          placeholder="รหัสผ่าน"
+          placeholder="รหัสผ่านเบอร์โทรศัพท์ที่ลงทะเบียน"
         >
           <template #icon>
             <i class="bx bx-lock-open-alt"></i>
@@ -45,7 +45,7 @@
             <a
               href="/registerstd"
               style="
-                margin-left: 142px;
+                margin-left: 170px;
                 font-family: 'Kanit', sans-serif;
                 font-weight: bold;
               "
@@ -143,6 +143,7 @@ export default {
       loading: false,
       uSername: '',
       pAssword: '',
+      
     }
   },
   methods: {

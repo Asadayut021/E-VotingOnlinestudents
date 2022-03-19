@@ -2,11 +2,9 @@
   <v-row>
     <v-col cols="12" sm="8" md="12">
       <v-col cols="12" sm="8" md="12">
-        <v-btn depressed color="error" @click="logout">
-          ออกจากระบบ
-        </v-btn>
+        <v-btn depressed color="error" @click="logout"> ออกจากระบบ </v-btn>
       </v-col>
-      <v-stepper style="margin-top: 25px" v-model="e1" v-if="!isStop && !status">
+      <v-stepper style="margin-top: 25px" v-model="e1" v-if="!isStop">
         <v-stepper-header>
           <v-stepper-step :complete="e1 > 1" step="1">
             ข้อมูลนักเรียนนักศึกษา
@@ -262,16 +260,7 @@ export default {
           // year: '2565',
         },
       ],
-      cLassapp: [
-        {
-          id: '1',
-          classapps: 'ปวช.1',
-        },
-        {
-          id: '2',
-          classapps: 'ปวช.2',
-        },
-      ],
+      cLassapp: [],
     }
   },
 

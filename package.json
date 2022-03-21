@@ -6,7 +6,8 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "deploy": "docker build -t asadayut/e-votingonline-students:1.0 . &&  docker push asadayut/e-votingonline-students:1.0"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",

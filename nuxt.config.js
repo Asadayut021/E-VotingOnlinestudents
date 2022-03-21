@@ -16,22 +16,24 @@ export default {
       { hid: 'description', name: 'description', content: '' },
       { name: 'format-detection', content: 'telephone=no' },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap' },
-    { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Poppins:wght@200&display=swap' }
-  ],
-    
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap',
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Poppins:wght@200&display=swap',
+      },
+    ],
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    'boxicons/css/boxicons.min.css',
-  ],
+  css: ['boxicons/css/boxicons.min.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '@/plugins/vuesax.js',
-  ],
+  plugins: ['@/plugins/vuesax.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -52,7 +54,16 @@ export default {
     '@nuxtjs/firebase',
   ],
   firebase: {
-    config: firebaseConfig,
+    // config: firebaseConfig,
+    config: {
+      apiKey: 'AIzaSyC71AYKQDicIgWYPWAbx1dCkshnHN00zc8',
+      authDomain: 'e-votingonline.firebaseapp.com',
+      projectId: 'e-votingonline',
+      storageBucket: 'e-votingonline.appspot.com',
+      messagingSenderId: '504249505379',
+      appId: '1:504249505379:web:615542ae337ff0fe1c8a56',
+      measurementId: 'G-95GKRR2ER8',
+    },
     services: {
       storage: true,
       database: true,
@@ -62,11 +73,11 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: "http://localhost:5001/",
+    baseURL: 'http://localhost:5001/',
   },
   endpoints: {
     login: 'loginstd',
-    logout: 'loginstd'
+    logout: 'loginstd',
   },
   auth: {
     strategies: {
@@ -88,7 +99,7 @@ export default {
             method: 'get',
             // propertyName: 'data.item',
           },
-          logout: false
+          logout: false,
         },
       },
     },

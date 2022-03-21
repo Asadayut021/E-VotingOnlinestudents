@@ -1,9 +1,16 @@
 {
-  "apiKey": "AIzaSyC71AYKQDicIgWYPWAbx1dCkshnHN00zc8",
-  "authDomain": "e-votingonline.firebaseapp.com",
-  "projectId": "e-votingonline",
-  "storageBucket": "e-votingonline.appspot.com",
-  "messagingSenderId": "504249505379",
-  "appId": "1:504249505379:web:615542ae337ff0fe1c8a56",
-  "measurementId": "G-95GKRR2ER8"
+  "hosting": {
+  "public": "dist",
+  "rewrites": [
+    {
+      "source": "**",
+      "destination": "/index.html"
+    }
+  ],
+  "ignore": [
+    "firebase.json",
+    "*/.",
+    "/node_modules/"
+  ]
+}
 }

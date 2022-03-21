@@ -76,6 +76,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 9%;
 }
 .cm2 {
   text-align: center;

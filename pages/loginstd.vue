@@ -16,7 +16,7 @@
 
       <img class="img1" src="~/static/images/logoit.png" alt="" />
       <p class="cm2">Information Technology</p>
-      <p class="cm3">เข้าสู่ระบบนักเรียนศึกษา</p>
+      <p class="cm3">เข้าสู่ระบบนักเรียนนะศึกษา</p>
       <div class="center content-inputs">
         <vs-input
           style="font-family: 'Kanit', sans-serif; font-weight: bold"
@@ -76,7 +76,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 9%;
+  margin-top: 8%;
 }
 .cm2 {
   text-align: center;

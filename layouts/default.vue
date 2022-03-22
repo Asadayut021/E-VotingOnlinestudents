@@ -55,7 +55,7 @@ export default {
       submenu: [
         {
           icon: 'bx bx-home',
-          title: 'จัดการข้อมูลส่วนตัว',
+          title: 'ข้อมูลส่วนตัว',
           to: '/indexstd',
           active: 'home',
         },

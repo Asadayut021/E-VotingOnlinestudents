@@ -16,7 +16,7 @@
 
       <img class="img1" src="~/static/images/logoit.png" alt="" />
       <p class="cm2">Information Technology</p>
-      <p class="cm3">เข้าสู่ระบบนักเรียนนะศึกษา</p>
+      <p class="cm3">เข้าสู่ระบบนักเรียนนักศึกษา</p>
       <div class="center content-inputs">
         <vs-input
           style="font-family: 'Kanit', sans-serif; font-weight: bold"
